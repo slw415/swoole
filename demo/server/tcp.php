@@ -19,7 +19,7 @@ $server->on('Connect', function ($server, $d, $reactor_id){
 
 //监听数据接收事件
 $server->on('Receive', function ($server, $fd, $reactor_id, $data){
-   $server->send($fd, "Server:{$reactor_id}-{$data}");
+   $server->send($fd, "Server:{$fd}-{$data}");
 });
 
 //监听链接关闭事件
