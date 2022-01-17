@@ -1,7 +1,14 @@
 <?php
-echo 11;
 
 $server = new Swoole\Server('127.0.0.1', 9501);
+
+$server->set(
+    [
+        'work_num' => 4,//work 进程数
+        'max_request' => 10000
+
+    ]
+);
 
 $server->on('Connect', function ($server, $d){
     echo "Client:Connect.\n";
