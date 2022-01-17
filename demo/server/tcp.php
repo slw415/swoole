@@ -9,14 +9,17 @@ $server->set(
 
     ]
 );
-
-$server->on('Connect', function ($server, $d){
-    echo "Client:Connect.\n";
+/**
+ * $fd 客户端链接的唯一标识
+ * $reactor_id 线程id
+ */
+$server->on('Connect', function ($server, $d, $reactor_id){
+    echo "Client:{$reactor_id}-{$d}Connect.\n";
 });
 
 //监听数据接收事件
 $server->on('Receive', function ($server, $fd, $reactor_id, $data){
-   $server->send($fd, "Server:{$data}");
+   $server->send($fd, "Server:{$reactor_id}-{$data}");
 });
 
 //监听链接关闭事件
