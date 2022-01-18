@@ -13,3 +13,4 @@ $msg = trim(fgetc(STDIN));
 $client->send($msg);
 //接收 来自server 的数据
 $res = $client->recv();
+echo $res;
