@@ -1,5 +1,11 @@
 <?php
 $http = new Swoole\Http\Server('0.0.0.0', 8811);
+$http->set(
+  [
+      'enable_static_handler' => true,
+      'document_root' => '/home/work/hdtocs/swoole_mooc/data'
+  ]
+);
 $http ->on('Request', function ($request,$response){
     $response->header('Content-Type', 'text/html; charset=utf-8');
     print_r($request->get);
