@@ -7,24 +7,23 @@
 <body>
     <h1>singwa-swoole</h1>
     <script>
-        var wsUrl = "ws://127.0.0.1:9502";
-        var websocket = new WebSocket(wsUrl);
-        //实列对象onopen属性
+        var wsServer = 'ws://127.0.0.1:9502';
+        var websocket = new WebSocket(wsServer);
         websocket.onopen = function (evt) {
-            console.log('connected-swoole-success')
-        }
-        //s实列话 对象 onmessage
-        websocket.onmessage = function (evt){
-            console.log('ws-server-return-data:'+evt.data)
-        }
-        //onclose
-        websocket.onclose = function (evt){
-            console.log('close')
-        }
-        //onerror
-        websocket.onerror = function (evt,e){
-            console.log("error:"+evt.data)
-        }
+            console.log("Connected to WebSocket server.");
+        };
+
+        websocket.onclose = function (evt) {
+            console.log("Disconnected");
+        };
+
+        websocket.onmessage = function (evt) {
+            console.log('Retrieved data from server: ' + evt.data);
+        };
+
+        websocket.onerror = function (evt, e) {
+            console.log('Error occured: ' + evt.data);
+        };
 
 
     </script>
