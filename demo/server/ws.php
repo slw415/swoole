@@ -35,6 +35,11 @@ class Ws{
      */
     public function onOpen($ws,$request){
         var_dump($request->fd);
+        if ($request->fd ==1){
+            Swoole\Timer::tick(2000,function ($timer_id){
+                echo "2s: timeId{$timer_id}\n";
+            });
+        }
     }
 
     /**
@@ -52,7 +57,11 @@ class Ws{
           'task' => 1,
           'fd' => $frame->fd
         ];
-        $ws->task($data);
+        //$ws->task($data);
+        Swoole\Timer::after(5000,function ()use ($ws,$frame){
+            echo "5s-after\n";
+            $ws->push($frame->fd, "server-time-after");
+        });
         $ws->push($frame->fd, "server-push:".date("Y-m-d H:i:s"));
     }
 
