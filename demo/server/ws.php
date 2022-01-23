@@ -52,7 +52,7 @@ class Ws{
           'task' => 1,
           'fd' => $frame->fd
         ];
-        $ws->task();
+        $ws->task($data);
         $ws->push($frame->fd, "server-push:".date("Y-m-d H:i:s"));
     }
 
