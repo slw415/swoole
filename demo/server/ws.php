@@ -8,7 +8,13 @@ class Ws{
     const PORT = 8812;
     public $ws = null;
     public function __construct(){
-        $ws = new Swoole\WebSocket\Server('0.0.0.0', 9502);
+        $this->ws = new Swoole\WebSocket\Server('0.0.0.0', 9502);
+        $this->ws->set(
+            [
+                'enable_static_handler' => true,
+                'document_root' => '/home/work/study/swoole_mooc/swoole/data'
+            ]);
+
         $this->ws->on("open",[$this,'onOpen']);
         $this->ws->on("message", [$this,'onMessage']);
         $this->ws->on("close",[$this,'onClose']);
