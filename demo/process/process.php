@@ -6,3 +6,5 @@ $process = new Process(function (Process $pro){
 },false);
 $pid = $process->start();
 echo  $pid.PHP_EOL;
+
+Process::wait();
