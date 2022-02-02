@@ -3,9 +3,9 @@
 use Swoole\Table;
 $table = new Table(1024);
 //内存表增加一行
-$table->column('id',TYPE_INT);
-$table->column('name', TYPE_STRING);
-$table->column('age', TYPE_INT);
+$table->column('id',$table::TYPE_INT, 4);
+$table->column('name', $table::TYPE_STRING64, );
+$table->column('age', $table::TYPE_INT, 3);
 $table->create();
 
 $table->set('singwa_imooc', ['id' => 1, 'name' => 'singwa', 'age' => 14]);
