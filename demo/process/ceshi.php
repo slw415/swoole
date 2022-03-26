@@ -1,8 +1,14 @@
 <?php
 use function Swoole\Coroutine\run;
 
-for ($i = 0 ;$i<=2;$i++){
-    run(function ()use ($i){
+run(function (){
 
-    });
-}
+    sleep(1);
+    echo 2;
+});
+echo 3;
+run(function (){
+
+    sleep(1);
+    echo 1;
+});
